@@ -1,0 +1,31 @@
+services:
+
+  ##
+  ## debug builder
+  ##
+  debug:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: builder:latest
+    profiles:
+      - debug
+    environment:
+      CMAKE_BUILD_TYPE: "Debug"
+    volumes:
+      - ".:/project"
+
+  ##
+  ## release builder
+  ##
+  release:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: builder:latest
+    profiles:
+      - release
+    environment:
+      CMAKE_BUILD_TYPE: "Release"
+    volumes:
+      - ".:/project"
